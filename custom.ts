@@ -13,11 +13,11 @@ enum Dir {
 }
 
 
-let PWMA = AnalogPin.P0;
-let AIN1 = DigitalPin.P1;
-let AIN2 = DigitalPin.P8;
+let PWMA = AnalogPin.P1;
+let AIN1 = DigitalPin.P12;
+let AIN2 = DigitalPin.P13;
 let PWMB = AnalogPin.P2;
-let BIN1 = DigitalPin.P12;
+let BIN1 = DigitalPin.P15;
 let BIN2 = DigitalPin.P16;
 
 //% weight=20 color=#3333FF icon="\uf1b9"
