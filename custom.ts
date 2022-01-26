@@ -5,15 +5,6 @@ enum Motor {
     B = 0x2,
 }
 
-enum Servo {
-    //% block="S0"
-    S0 = 0x1,
-    //% block="S1"
-    S1 = 0x2,
-    //% block="S2"
-    S2 = 0x3,
-}
-
 enum Dir {
     //% block="Forward"
     forward = 0x1,
@@ -28,9 +19,6 @@ let AIN2 = DigitalPin.P8;
 let PWMB = AnalogPin.P2;
 let BIN1 = DigitalPin.P12;
 let BIN2 = DigitalPin.P16;
-let S0_PIN = AnalogPin.P0;
-let S1_PIN = AnalogPin.P1;
-let S2_PIN = AnalogPin.P2;
 
 //% weight=20 color=#3333FF icon="\uf1b9"
 namespace MotorDriver {
@@ -74,61 +62,4 @@ namespace MotorDriver {
         else
             pins.analogWritePin(PWMB, 0)
     }
-
-    //% blockId=ServosTurnZero
-    //% block="Servos %s| Turn Zero"
-    //% weight=80
-    export function ServosTurnZero(s: Servo): void {
-        if (s == Servo.S0)
-            pins.servoWritePin(S0_PIN, 0)
-        else if (s == Servo.S1)
-            pins.servoWritePin(S1_PIN, 0)
-        else
-            pins.servoWritePin(S2_PIN, 0)
-    }
-
-    //% blockId=ServosTurnFull
-    //% block="Servos %s| Turn Full"
-    //% weight=79
-    export function ServosTurnFull(s: Servo): void {
-        if (s == Servo.S0)
-            pins.servoWritePin(S0_PIN, 180)
-        else if (s == Servo.S1)
-            pins.servoWritePin(S1_PIN, 180)
-        else
-            pins.servoWritePin(S2_PIN, 180)
-    }
-
-
-    //% blockId=ServoStop
-    //% block="Servos %s| Stop"
-    //% weight=69 
-    export function ServoStop(s: Servo): void {
-        if (s == Servo.S0)
-            pins.servoSetPulse(S0_PIN, 0)
-        else if (s == Servo.S1)
-            pins.servoSetPulse(S1_PIN, 0)
-        else
-            pins.servoSetPulse(S2_PIN, 0)
-    }
-
-    /**
-     * Servo TurnAngle
-     * @param angle [0-180] speed of Motor; eg: 180, 0, 180
-    */
-    //% blockId=ServoTurnAngle
-    //% block="Servos %s| Turn Angle %angle"
-    //% weight=60 
-    //% angle.min=0 angle.max=180
-    export function ServoTurnAngle(s: Servo, angle: number): void {
-        let temp = 0
-        temp = angle * 10 + 500 //0.5ms - 2.5ms
-        if (s == Servo.S0)
-            pins.servoSetPulse(S0_PIN, temp)
-        else if (s == Servo.S1)
-            pins.servoSetPulse(S1_PIN, temp)
-        else
-            pins.servoSetPulse(S2_PIN, temp)
-    }
-
 }
